@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <base target="_blank" />
+    <title>zhoukekestar</title>
+    <style>
+      html, body {
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        background-size: cover;
+        background-image: url(./public/img/background.jpg);
+        background-position: center;
+        font-family: Arial, sans-serif;
+      }
+      body {
+        padding: 0;
+        margin: 0;
+      }
+      /* 菜单 */
+      header {
+        display: flex;
+        justify-content: center;
+        padding: 100px 0;
+      }
+      header a {
+        margin: 40px;
+        font-size: 22px;
+        text-decoration: none;
+        color: rgba(255, 255, 255, 0.5);
+        transition: all .5s;
+      }
+      header a:hover {
+        color: #fff;
+      }
+      /* 头像和昵称 */
+      section {
+        text-align: center;
+      }
+      section:hover {
+        cursor: pointer;
+      }
+      section small {
+        color: #fff;
+        font-size: 20px;
+        -webkit-animation: breath 2s infinite;
+        -moz-animation: breath 2s infinite;
+        animation: breath 2s infinite;
+      }
+      section img {
+        height: 100px;
+        width: 100px;
+        display: block;
+        margin: 20px auto;
+      }
+      section, section img, section small {
+        transition: all .5s;
+      }
+      section.actived {
+        margin-top: -40px;
+      }
+      section.actived img {
+        height: 50px;
+        width: 50px;
+      }
+      section.actived small {
+        font-size: 14px;
+      }
+      /* 我的谚语 */
+      p {
+        transition: all .5s;
+        text-align: center;
+      }
+      section + p {
+        opacity: 0;
+      }
+      section.actived + p {
+        opacity: 1;
+      }
+      p span {
+        color: #fff;
+        text-align: center;
+        font-size: 38px;
+        line-height: 2.3em;
+        font-weight: bold;
+        letter-spacing: 4px;
+      }
+      /* 粒子背景 */
+      canvas {
+        position: fixed;
+        left: 0;
+        top: 0;
+        z-index: -1;
+      }
+      /* 打字光标 */
+      span.typed-cursor {
+        color: #fff;
+      }
+      .typed-cursor{
+        opacity: 1;
+        color: #fff;
+        -webkit-animation: blink 0.7s infinite;
+        -moz-animation: blink 0.7s infinite;
+        animation: blink 0.7s infinite;
+      }
+      /* 打字光标动画 */
+      @keyframes blink{
+        0% { opacity:1; }
+        50% { opacity:0; }
+        100% { opacity:1; }
+      }
+      @-webkit-keyframes blink{
+        0% { opacity:1; }
+        50% { opacity:0; }
+        100% { opacity:1; }
+      }
+      @-moz-keyframes blink{
+        0% { opacity:1; }
+        50% { opacity:0; }
+        100% { opacity:1; }
+      }
+      /* 昵称呼吸灯动画 */
+      @keyframes breath{
+        0% {
+          text-shadow: 0 0 0 #fff;
+        }
+        50% {
+          text-shadow: 0 0 15px #fff;
+        }
+        100% {
+          text-shadow: 0 0 0 #fff;
+        }
+      }
+      @-webkit-keyframes breath{
+        0% {
+          text-shadow: 0 0 0 #fff;
+        }
+        50% {
+          text-shadow: 0 0 15px #fff;
+        }
+        100% {
+          text-shadow: 0 0 0 #fff;
+        }
+      }
+      @-moz-keyframes breath{
+        0% {
+          text-shadow: 0 0 0 #fff;
+        }
+        50% {
+          text-shadow: 0 0 15px #fff;
+        }
+        100% {
+          text-shadow: 0 0 0 #fff;
+        }
+      }
+      /* 底部感谢 */
+      footer {
+        color: #3e3e3e;
+        position: fixed;
+        bottom: 0;
+        text-align: center;
+        display: block;
+        width: 100%;
+        padding: 30px 0;
+        font-size: 14px;
+      }
+      footer a {
+        color: inherit;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <a href="/notes">Notes</a>
+      <!-- <a href="/resume.html">Resume</a> -->
+      <a href="https://github.com/zhoukekestar">Profile</a>
+      <!-- <a href="/architecture.html">Points</a> -->
+      <a href="./timeline.html">Timeline</a>
+      <a href="./resume.html">Resume</a>
+    </header>
+    <section>
+      <img src='https://avatars2.githubusercontent.com/u/7157346?v=3&s=460'>
+      <small>zhoukekestar</small>
+    </section>
+    <p><span><span></p>
+
+    <footer>
+      This site is hosted with ❤️ by
+      <a href='https://github.com/'>Github</a>. Powered by
+      <a href='https://www.mattboldt.com/demos/typed-js/'>typed.js</a> &
+      <a href='https://github.com/marcbruederlin/particles.js' >particles.js</a>.
+      Thanks a lot.
+    </footer>
+    <!-- typing words -->
+    <script src="https://cdn.bootcss.com/typed.js/1.1.7/typed.min.js"></script>
+    <script>
+      var section = document.querySelector('section')
+      section.onclick = function () {
+        this.classList.toggle('actived');
+        if (this.classList.contains('actived')) {
+          Typed.new('p span', {
+            strings: ["Thanksgiving.<br>Love what you learn, Do what you want.<br>Be the Best."],
+            typeSpeed: 60,
+            showCursor: true,
+            cursorChar: "|",
+          });
+        }
+      }
+    </script>
+
+    <!-- particles -->
+    <canvas id="background"></div>
+    <script src="https://cdn.bootcss.com/particlesjs/2.0.2/particles.min.js"></script>
+    <script>
+      Particles.init({
+        selector: '#background',
+        color: '#75A5B7',
+        maxParticles: 50,
+        connectParticles: true,
+      });
+    </script>
+
+    <!-- GA -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-96916405-4', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </body>
+</html>
